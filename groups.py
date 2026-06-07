@@ -1,3 +1,15 @@
+# ========== حل مشكلة pyrogram ==========
+import sys
+import types as _types
+
+# إنشاء وحدة pyrogram وهمية
+mock_pyrogram = _types.ModuleType('pyrogram')
+mock_pyrogram.Client = type('Client', (), {})
+mock_pyrogram.filters = type('filters', (), {})
+mock_pyrogram.types = type('types', (), {})
+sys.modules['pyrogram'] = mock_pyrogram
+# ======================================
+
 import asyncio
 import json
 import os
@@ -14,7 +26,7 @@ ADMIN_ID = 5667467267
 # إعدادات عامة للقروبات
 MESSAGE_TO_SEND = "."
 
-# إعدادات الجدولة الافتراضية (يمكن تعديلها عبر البوت)
+# إعدادات الجدولة الافتراضية
 DAILY_GROUPS_LIMIT_PER_ACCOUNT = 6
 MIN_HOURS_BETWEEN_GROUPS = 3
 MAX_HOURS_BETWEEN_GROUPS = 5
